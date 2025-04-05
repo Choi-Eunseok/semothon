@@ -77,7 +77,6 @@ const create = new Elysia()
           eventId: event._id.toString(),
         };
       } catch (err) {
-        console.log(err);
         return exit(error, "INSERT_EVENT_FAILED");
       }
     },
