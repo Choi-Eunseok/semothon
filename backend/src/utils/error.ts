@@ -37,6 +37,8 @@ export const ERROR_MESSAGE = {
 
   NO_EVENT_ID: [400, "이벤트 ID가 없습니다."],
   NO_EVENT: [404, "존재하지 않는 이벤트입니다."],
+
+  NOTIFICATION_NOT_FOUND: [404, "알림을 찾을 수 없습니다."],
 } as const;
 
 export type ERROR_MESSAGE_TYPE = typeof ERROR_MESSAGE;

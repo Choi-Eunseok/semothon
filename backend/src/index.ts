@@ -58,6 +58,10 @@ if (Bun.env.NODE_ENV === "development") {
         {
           name: "Event",
           description: "이벤트에 관련된 API입니다.",
+        },
+        {
+          name: "Notification",
+          description: "알림에 관련된 API입니다.",
         }
       ]
     }
