@@ -11,6 +11,7 @@ interface DTimetableBase {
   name: string;
   owner_type: "user" | "global" | "activity";
   owner: ObjectId;
+  color?: string;
 }
 
 interface DActivityTimetable extends DTimetableBase {
@@ -32,6 +33,7 @@ export type MappedTimetable =
     name: string;
     owner_type: "user" | "global";
     owner: string;
+    color?: string;
   }
 | {
     _id: string;
@@ -39,6 +41,7 @@ export type MappedTimetable =
     owner_type: "activity";
     owner: string;
     visibility: "public" | "member";
+    color?: string;
   };
 
 export const timetableElysiaSchema = t.Union([
@@ -48,12 +51,14 @@ export const timetableElysiaSchema = t.Union([
     owner_type: t.Literal("activity"),
     owner: t.String(),
     visibility: t.Enum({ public: "public", member: "member" }, { description: "공개 범위" }),
+    color: t.Optional(t.String({ description: "캘린더 색상 코드", example: "#FFAE00" })),
   }),
   t.Object({
     _id: t.String(),
     name: t.String(),
     owner_type: t.Enum({ user: "user", global: "global" }),
     owner: t.String(),
+    color: t.Optional(t.String({ description: "캘린더 색상 코드", example: "#FF0000" })),
   }),
 ]);
 
@@ -77,7 +82,12 @@ const timetableSchema = new mongoose.Schema<ITimetable>({
     },
     default: "member",
   },
+  color: {
+    type: String,
+    default: "#E01732",
+  },
 });
+
 const TimetableDB = mongoose.model<ITimetable>("Timetable", timetableSchema);
 
 const generateIcsAccessToken = async (timetableId: string, userId: string) => {

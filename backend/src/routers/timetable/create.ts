@@ -8,11 +8,12 @@ const createTimetable = new Elysia().use(TimetableModel).post(
   "",
   async ({ body, timetableModel, error }) => {
     try {
-      const { name, owner, owner_type } = body;
+      const { name, owner, owner_type, color } = body;
       const data: any = {
         name,
         owner,
         owner_type,
+        ...(color && { color }),
       };
 
       if (owner_type === "activity") {
@@ -36,11 +37,13 @@ const createTimetable = new Elysia().use(TimetableModel).post(
         owner_type: t.Literal("activity"),
         owner: t.String({ description: "활동 ID (ObjectId)" }),
         visibility: t.Optional(t.Enum({ public: "public", member: "member" }, { description: "공개 범위" })),
-      }, { activity:"activity" }),
+        color: t.Optional(t.String({ description: "캘린더 색상 (hex format)", example: "#FFAE00" })),
+      }),
       t.Object({
         name: t.Optional(t.String({ description: "캘린더 이름" })),
         owner_type: t.Enum({ user: "user", global: "global" }),
         owner: t.String({ description: "사용자 ID (ObjectId)" }),
+        color: t.Optional(t.String({ description: "캘린더 색상 (hex format)", example: "#FF0000" })),
       }),
     ]),
     response: {

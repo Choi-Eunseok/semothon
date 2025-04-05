@@ -37,6 +37,20 @@ export const ERROR_MESSAGE = {
 
   NO_EVENT_ID: [400, "이벤트 ID가 없습니다."],
   NO_EVENT: [404, "존재하지 않는 이벤트입니다."],
+
+  REQUIRED_ANSWERS_MISSING: [400, "필수 답변이 누락되었습니다."],
+  ANSWER_TOO_LONG: [400, "답변이 너무 깁니다."],
+
+  FETCH_APPLICATIONS_FAILED: [500, "지원서 목록 조회에 실패했습니다."],
+  NOT_RECRUITING_PERIOD: [400, "현재 모집 기간이 아닙니다."],
+  INTERVIEW_NOT_STARTED: [400, "아직 면접 전형이 시작되지 않았습니다."],
+
+  NO_APPLICATION_ID: [400, "지원서 ID가 없습니다."],
+  NO_APPLICATION: [404, "존재하지 않는 지원서입니다."],
+
+  ALREADY_APPLIED: [400, "이미 지원한 활동(동아리)입니다."],
+  CREATE_FAILED: [500, "지원서 생성에 실패했습니다."],
+  RECRUITMENT_ENDED: [403, "서류 전형 기간이 종료되어 지원서를 수정할 수 없습니다."],
 } as const;
 
 export type ERROR_MESSAGE_TYPE = typeof ERROR_MESSAGE;

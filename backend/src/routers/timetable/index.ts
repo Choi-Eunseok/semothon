@@ -3,6 +3,7 @@ import Elysia from "elysia";
 import TimetableIdRouter from "./[id]";
 import createTimetable from "./create";
 import listTimetable from "./list";
+import listDots from "./list-dots";
 
 const TimetableRouter = new Elysia({
   name: "Timetable Router",
@@ -10,6 +11,7 @@ const TimetableRouter = new Elysia({
 })
   .use(createTimetable)
   .use(listTimetable)
+  .use(listDots)
   .use(TimetableIdRouter);
 
 export default TimetableRouter;
